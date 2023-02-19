@@ -1,5 +1,5 @@
-import * as THREE from "../../build/three.module.js";
-import { OrbitControls } from "../../examples/jsm/controls/OrbitControls.js";
+import * as THREE from "../../../build/three.module.js";
+import { OrbitControls } from "../../../examples/jsm/controls/OrbitControls.js";
 
 class App {
 	constructor() {
@@ -33,7 +33,7 @@ class App {
 		const width = this._divContainer.clientWidth;
 		const height = this._divContainer.clientHeight;
 		const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-		camera.position.z = 2;
+		camera.position.z = 15;
 		this._camera = camera;
 	}
 
@@ -45,23 +45,33 @@ class App {
 		this._scene.add(light);
 	}
 
+	/**
+	 * To understan TubeGeometry, let's check Curve class first
+	 */
 	_setupModel() {
-		const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
-		const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-		const cube = new THREE.Mesh(geometry, fillMaterial);
+		class CustomSinCurve extends THREE.Curve {
+			constructor(scale) {
+				super();
+				this.scale = scale;
+			}
+			getPoint(t) {
+				const tx = t * 3 - 1.5;
+				const ty = Math.sin(2 * Math.PI * t);
+				const tz = 0;
+				return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
+			}
+		}
 
-		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-		const line = new THREE.LineSegments(
-			new THREE.WireframeGeometry(geometry),
-			lineMaterial
-		);
+		const path = new CustomSinCurve(4);
 
-		const group = new THREE.Group();
-		group.add(cube);
-		group.add(line);
+		const geometry = new THREE.BufferGeometry();
+		const points = path.getPoints(32); // points on the curve, default value: 5
+		geometry.setFromPoints(points);
 
-		this._scene.add(group);
-		this._cube = group;
+		const material = new THREE.LineBasicMaterial({ color: 0x39ff14 });
+		const line = new THREE.Line(geometry, material);
+
+		this._scene.add(line);
 	}
 
 	resize() {

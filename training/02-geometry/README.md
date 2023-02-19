@@ -258,6 +258,134 @@ const geometry = new THREE.TorusKnotGeometry(
 
 - `q`: (default value: 3)
 
+### ShapeGeometry
+
+- Draw square line
+
+  ```js
+  const shape = new THREE.Shape();
+  shape.moveTo(1, 1);
+  shape.lineTo(1, -1);
+  shape.lineTo(-1, -1);
+  shape.lineTo(-1, 1);
+  shape.closePath();
+  ```
+
+### TubeGeometry
+
+#### Parameters
+
+```js
+const geometry = new THREE.TubeGeometry(
+  path,
+  tubularSegments,
+  radius,
+  radialSegments,
+  closed
+);
+```
+
+- `path`: (default value: a quadratic bezier curve)
+
+- `tubularSegments`: (default value: 64)
+
+- `radius`: (default value: 1)
+
+- `radialSegments`: (default value: 8)
+
+- `closed`: (default value: false)
+
+### LatheGeometry
+
+#### Parameters
+
+```js
+const geometry = new THREE.LatheGeometry(points, segments, phiStart, phiLength);
+```
+
+- `points`: (default value: an array with (0,-0.5), (0.5,0) and (0,0.5) which creates a simple diamond shape)
+
+- `segments`: (default value: 12)
+
+- `phiStart`: (default value: 0)
+
+- `phiLength`: (default value: 2π)
+
+### ExtrudeGeometry
+
+#### Parameters
+
+```js
+const geometry = new THREE.ExtrudeGeometry(
+  curveSegments,
+  steps,
+  depth,
+  bevelEnabled,
+  bevelThickness,
+  bevelSize,
+  bevelOffset,
+  bevelSegments,
+  extrudePath,
+  UVGenerator
+);
+```
+
+- `curveSegments`: (default value: 12)
+
+- `steps`: (default value: 1)
+
+- `depth`: (default value: 1)
+
+- `bevelEnabled`: (default value: true)
+
+- `bevelThickness`: (default value: 0.2)
+
+- `bevelSize`: (default value: 0.1)
+
+- `bevelOffset`: (default value: 0)
+
+- `bevelSegments`: (default value: 3)
+
+- `extrudePath`
+
+- `UVGenerator`
+
+### LatheGeometry
+
+#### Parameters
+
+```js
+const geometry = new THREE.LatheGeometry(
+  font,
+  size,
+  height,
+  curveSegments,
+  bevelEnabled,
+  bevelThickness,
+  bevelSize,
+  bevelOffset,
+  bevelSegments
+);
+```
+
+- `font`: an instance of THREE.Font.
+
+- `size`: (default value: 100)
+
+- `height`: (default value: 50)
+
+- `curveSegments`: (default value: 12)
+
+- `bevelEnabled`: (default value: false)
+
+- `bevelThickness`: (default value: 10)
+
+- `bevelSize`: (default value: 8)
+
+- `bevelOffset`: (default value: 0)
+
+- `bevelSegments`: (default value: 3)
+
 ### Reference
 
 - [BoxGeometry](https://threejs.org/docs/?q=BoxGeometry#api/en/geometries/BoxGeometry)
@@ -269,3 +397,8 @@ const geometry = new THREE.TorusKnotGeometry(
 - [PlaneGeometry](https://threejs.org/docs/?q=plan#api/en/geometries/PlaneGeometry)
 - [TorusGeometry](https://threejs.org/docs/?q=torus#api/en/geometries/TorusGeometry)
 - [TorusKnotGeometry](https://threejs.org/docs/?q=torus#api/en/geometries/TorusKnotGeometry)
+- [ShapeGeometry](https://threejs.org/docs/?q=ShapeGeometry#api/en/geometries/ShapeGeometry)
+- [TubeGeometry](https://threejs.org/docs/?q=TubeGeometry#api/en/geometries/TubeGeometry)
+- [LatheGeometry](https://threejs.org/docs/?q=lathe#api/en/geometries/LatheGeometry)
+- [ExtrudeGeometry](https://threejs.org/docs/?q=Extrude#api/en/geometries/ExtrudeGeometry)
+- [TextGeometry](https://threejs.org/docs/?q=TextGeometry#examples/en/geometries/TextGeometry)
